@@ -1,10 +1,8 @@
 <template>
-    <app-header />
-    <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
+    <div class="px-4 mx-auto max-w-7xl sm:px-6">
+        <app-header />
+        <router-view />
     </div>
-    <router-view />
 </template>
 
 <script lang="ts">

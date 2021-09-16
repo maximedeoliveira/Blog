@@ -1,5 +1,7 @@
 <template>
-    <a href="#" :class="className">{{ label }}</a>
+    <a href="#" :class="className">
+        <slot></slot>
+    </a>
 </template>
 
 <script lang="ts">
@@ -7,7 +9,6 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
     props: {
-        label: { type: String, required: true },
         type: { type: String, required: false, default: 'primary' },
     },
     computed: {
