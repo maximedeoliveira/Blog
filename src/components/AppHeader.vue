@@ -10,10 +10,10 @@
             <router-link to="/about">About</router-link>
         </div>
         <div class="flex space-x-4">
-            <app-button type="link">
+            <app-button buttonType="link">
                 <router-link to="/sign-in">Sign in</router-link>
             </app-button>
-            <app-button label="Sign up">
+            <app-button>
                 <router-link to="/sign-up">Sign up</router-link>
             </app-button>
         </div>
