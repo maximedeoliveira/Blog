@@ -42,7 +42,13 @@
                         v-model="password"
                     />
                 </div>
-                <app-button class="w-full" type="submit">Valider</app-button>
+                <p v-if="error" class="text-sm text-center text-red-500">
+                    {{ error.message }}
+                </p>
+                <app-button class="w-full space-x" type="submit">
+                    <icon-spinner v-if="loading" />
+                    <span>Valider</span>
+                </app-button>
             </form>
             <div
                 class="flex items-center justify-center mt-2 space-x-2 text-sm font-semibold text-gray-700 "
@@ -68,9 +74,10 @@ import { useMutation } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
 import { useStore } from '@/store';
 import { AuthActionsType } from '@/store/modules/auth/actions';
+import IconSpinner from '@/components/icons/IconSpinner.vue';
 
 export default defineComponent({
-    components: { AppButton, AppInput, AppLabel },
+    components: { AppButton, AppInput, AppLabel, IconSpinner },
     data() {
         return {
             email: '',
@@ -87,7 +94,11 @@ export default defineComponent({
     setup() {
         const store = useStore();
 
-        const { mutate: signIn } = useMutation(
+        const {
+            mutate: signIn,
+            loading,
+            error,
+        } = useMutation(
             gql`
                 mutation signIn($email: String!, $password: String!) {
                     signIn(email: $email, password: $password) {
@@ -107,7 +118,7 @@ export default defineComponent({
             })
         );
 
-        return { signIn };
+        return { signIn, loading, error };
     },
 });
 </script>
