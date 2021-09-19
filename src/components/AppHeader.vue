@@ -7,13 +7,16 @@
         </div>
         <div id="nav">
             <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
+            <router-link to="/account">Account</router-link>
         </div>
-        <div class="flex space-x-4">
-            <app-button type="link">
+        <div class="flex space-x-4" v-if="isAuthenticated">
+            <app-button @click.prevent="logout()"> Logout </app-button>
+        </div>
+        <div v-else>
+            <app-button buttonType="link">
                 <router-link to="/sign-in">Sign in</router-link>
             </app-button>
-            <app-button label="Sign up">
+            <app-button>
                 <router-link to="/sign-up">Sign up</router-link>
             </app-button>
         </div>
@@ -21,10 +24,23 @@
 </template>
 
 <script lang="ts">
+import { AuthActionsType } from '@/store/modules/auth/actions';
+import { AuthGettersTypes } from '@/store/modules/auth/getters';
 import { defineComponent } from 'vue';
+import { mapActions, mapGetters } from 'vuex';
 import AppButton from './AppButton.vue';
 
 export default defineComponent({
     components: { AppButton },
+    computed: {
+        ...mapGetters({
+            isAuthenticated: AuthGettersTypes.IS_AUTHENTICATED,
+        }),
+    },
+    methods: {
+        ...mapActions({
+            logout: AuthActionsType.LOGOUT,
+        }),
+    },
 });
 </script>
