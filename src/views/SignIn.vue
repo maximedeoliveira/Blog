@@ -19,8 +19,8 @@
                     <app-label id="email">Email</app-label>
                     <app-input
                         id="email"
-                        type="text"
-                        idRequired
+                        type="email"
+                        is-required
                         placeholder="Adresse email"
                         autocomplete="email"
                         v-model:modelValue="email"
@@ -36,7 +36,7 @@
                     <app-input
                         id="password"
                         type="password"
-                        isRequired
+                        is-required
                         placeholder="Password"
                         autocomplete="password"
                         v-model="password"
@@ -66,6 +66,8 @@ import AppInput from '@/components/AppInput.vue';
 import AppLabel from '@/components/AppLabel.vue';
 import { useMutation } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
+import { useStore } from '@/store';
+
 export default defineComponent({
     components: { AppButton, AppInput, AppLabel },
     data() {
@@ -75,20 +77,31 @@ export default defineComponent({
         };
     },
     methods: {
-        handleSubmit(e: any) {
-            console.log(this);
-            console.log(this.email);
-            console.log(this.password);
+        handleSubmit(e: Event) {
+            this.signIn({ email: this.email, password: this.password });
+
+            e.preventDefault();
         },
     },
     setup() {
-        const { mutate: signIn } = useMutation(gql`
-            mutation signIn($signInEmail: String!, $signInPassword: String!) {
-                signIn(email: $signInEmail, password: $signInPassword) {
-                    token
+        const store = useStore();
+
+        const { mutate: signIn } = useMutation(
+            gql`
+                mutation signIn($email: String!, $password: String!) {
+                    signIn(email: $email, password: $password) {
+                        token
+                    }
                 }
-            }
-        `);
+            `,
+            () => ({
+                update: (cache, { data }) => {
+                    if (data.signIn.token) {
+                        store.commit('login', data.signIn.token);
+                    }
+                },
+            })
+        );
 
         return { signIn };
     },
