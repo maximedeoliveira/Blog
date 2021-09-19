@@ -24,21 +24,22 @@
 </template>
 
 <script lang="ts">
-import { useStore } from '@/store';
-import { computed, defineComponent, watch } from 'vue';
-import { mapGetters, mapMutations } from 'vuex';
+import { AuthActionsType } from '@/store/modules/auth/actions';
+import { AuthGettersTypes } from '@/store/modules/auth/getters';
+import { defineComponent } from 'vue';
+import { mapActions, mapGetters } from 'vuex';
 import AppButton from './AppButton.vue';
 
 export default defineComponent({
     components: { AppButton },
     computed: {
         ...mapGetters({
-            isAuthenticated: 'getIsAuthenticated',
+            isAuthenticated: AuthGettersTypes.IS_AUTHENTICATED,
         }),
     },
     methods: {
-        ...mapMutations({
-            logout: 'logout',
+        ...mapActions({
+            logout: AuthActionsType.LOGOUT,
         }),
     },
 });
