@@ -1,34 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue';
+import { Routes, RoutesName } from './types';
 
-const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/',
-        name: 'Home',
-        component: Home,
-        meta: { authenticated: false },
-    },
-    {
-        path: '/account',
-        name: 'Account',
-        component: () =>
-            import(/* webpackChunkName: "about" */ '../views/Account.vue'),
-        meta: { authenticated: true },
-    },
-    {
-        path: '/sign-in',
-        name: 'SignIn',
-        component: () =>
-            import(/* webpackChunkName: "signIn" */ '../views/SignIn.vue'),
-        meta: { authenticated: false },
-    },
-    {
-        path: '/sign-up',
-        name: 'SignUp',
-        component: () =>
-            import(/* webpackChunkName: "signUp" */ '../views/SignUp.vue'),
-        meta: { authenticated: false },
-    },
+const routes = [
+    Routes[RoutesName.HOME],
+    Routes[RoutesName.ACCOUNT],
+    Routes[RoutesName.SIGN_IN],
+    Routes[RoutesName.SIGN_UP],
 ];
 
 const router = createRouter({
@@ -50,12 +28,12 @@ const isAuthenticated = () => {
 
 router.beforeEach((to, from, next) => {
     if (to.meta.authenticated === true && !isAuthenticated()) {
-        next({ name: 'SignIn' });
+        next({ name: RoutesName.HOME });
     } else if (
-        (to.name === 'SignIn' || to.name === 'SignUp') &&
+        (to.name === RoutesName.SIGN_IN || to.name === RoutesName.SIGN_UP) &&
         isAuthenticated()
     ) {
-        next({ name: 'Home' });
+        next({ name: RoutesName.HOME });
     } else {
         next();
     }
