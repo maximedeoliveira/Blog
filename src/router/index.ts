@@ -1,5 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue';
+import { createRouter, createWebHistory } from 'vue-router';
 import { Routes, RoutesName } from './types';
 
 const routes = [
@@ -28,7 +27,7 @@ const isAuthenticated = () => {
 
 router.beforeEach((to, from, next) => {
     if (to.meta.authenticated === true && !isAuthenticated()) {
-        next({ name: RoutesName.HOME });
+        next({ name: RoutesName.SIGN_IN });
     } else if (
         (to.name === RoutesName.SIGN_IN || to.name === RoutesName.SIGN_UP) &&
         isAuthenticated()
