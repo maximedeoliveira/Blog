@@ -70,7 +70,7 @@ import { defineComponent } from 'vue';
 import AppButton from '@/components/AppButton.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppLabel from '@/components/AppLabel.vue';
-import { useMutation } from '@vue/apollo-composable';
+import { useMutation, useQuery } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
 import { useStore } from '@/store';
 import { AuthActionsType } from '@/store/modules/auth/actions';
@@ -104,6 +104,13 @@ export default defineComponent({
             gql`
                 mutation signIn($email: String!, $password: String!) {
                     signIn(email: $email, password: $password) {
+                        user {
+                            name
+                            email
+                            updatedAt
+                            createdAt
+                            id
+                        }
                         token
                     }
                 }
@@ -111,10 +118,10 @@ export default defineComponent({
             () => ({
                 update: (cache, { data }) => {
                     if (data.signIn.token) {
-                        store.dispatch(
-                            AuthActionsType.LOGIN,
-                            data.signIn.token
-                        );
+                        store.dispatch(AuthActionsType.LOGIN, {
+                            token: data.signIn.token,
+                            user: data.signIn.user,
+                        });
                     }
                 },
             })
