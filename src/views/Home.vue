@@ -5,7 +5,14 @@
     <div>
         <ul v-if="result">
             <li v-for="post in result.getAllPosts" :key="post.id">
-                {{ post.id }} | {{ post.title }} | {{ post.slug }}
+                <router-link
+                    :to="{
+                        name: routes.POST,
+                        params: { id: post.id, slug: post.slug },
+                    }"
+                >
+                    {{ post.title }}
+                </router-link>
             </li>
         </ul>
     </div>
@@ -15,8 +22,14 @@
 import { defineComponent } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
+import { RoutesName } from '@/router/types';
 
 export default defineComponent({
+    data() {
+        return {
+            routes: RoutesName,
+        };
+    },
     setup() {
         const { result } = useQuery(gql`
             query getAllPosts {
