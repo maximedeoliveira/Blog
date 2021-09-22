@@ -3,6 +3,7 @@ import { Routes, RoutesName } from './types';
 
 const routes = [
     Routes[RoutesName.HOME],
+    Routes[RoutesName.POST],
     Routes[RoutesName.ACCOUNT],
     Routes[RoutesName.SIGN_IN],
     Routes[RoutesName.SIGN_UP],

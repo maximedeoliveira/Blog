@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 
 export enum RoutesName {
     HOME = 'Home',
+    POST = 'Post',
     ACCOUNT = 'Account',
     SIGN_IN = 'SignIn',
     SIGN_UP = 'SignUp',
@@ -13,6 +14,13 @@ export const Routes: Record<RoutesName, RouteRecordRaw> = {
         name: RoutesName.HOME,
         path: '/',
         component: Home,
+        meta: { authenticated: false },
+    },
+    [RoutesName.POST]: {
+        name: RoutesName.POST,
+        path: '/post/:id',
+        component: () =>
+            import(/* webpackChunkName: "Post" */ '../views/Post.vue'),
         meta: { authenticated: false },
     },
     [RoutesName.ACCOUNT]: {

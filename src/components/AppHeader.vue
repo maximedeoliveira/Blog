@@ -5,13 +5,6 @@
                 <img src="../assets/logo.png" alt="Logo" class="w-16" />
             </router-link>
         </div>
-        <div id="nav">
-            <router-link :to="{ name: routesName.HOME }">Home</router-link>
-            |
-            <router-link :to="{ name: routesName.ACCOUNT }">
-                Account
-            </router-link>
-        </div>
         <div class="flex items-center space-x-4" v-if="isAuthenticated">
             <app-dropdown :title="getUser.name">
                 <div class="p-1" role="none">
@@ -24,7 +17,7 @@
                             id="menu-item-2"
                         >
                             <icon-user
-                                class="w-5 h-5 mr-2 text-indigo-600  group-hover:text-indigo-300"
+                                class="w-5 h-5 mr-2 text-indigo-600 stroke-2  group-hover:text-indigo-300"
                             />
                             Mon compte
                         </a>
