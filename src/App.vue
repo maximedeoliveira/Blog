@@ -1,16 +1,10 @@
 <template>
-    <div class="bg-gray-100">
-        <div class="flex flex-col h-screen px-4 mx-auto max-w-7xl sm:px-6">
-            <div v-if="hideHeader == false">
-                <app-header />
-            </div>
-            <router-view />
+    <div class="flex flex-col h-screen px-4 mx-auto max-w-7xl sm:px-6">
+        <div v-if="hideHeader == false">
+            <app-header />
         </div>
-    </div>
-
-    <!-- <div class="flex flex-col h-screen" v-else>
         <router-view />
-    </div> -->
+    </div>
 </template>
 
 <script lang="ts">
