@@ -24,13 +24,13 @@
                 </app-button>
             </div>
             <div
-                class="absolute top-0 w-full h-full bg-indigo-600 rounded  bg-opacity-70"
+                class="absolute top-0 w-full h-full bg-indigo-700 rounded  bg-opacity-80"
                 v-if="isAuthenticated === false"
             >
                 <div
                     class="flex flex-col items-center justify-center w-full h-full space-y-2 "
                 >
-                    <p class="font-medium text-white">
+                    <p class="font-medium text-center text-white">
                         Vous devez être connecté pour ajouter un commentaire.
                     </p>
                     <app-button>
@@ -44,8 +44,7 @@
     </div>
     <div v-if="post.comment.length > 0">
         <p class="mt-12 mb-4 text-2xl font-bold text-gray-700">
-            {{ post.comment.length }}
-            {{ post.comment.length > 1 ? 'commentaires' : 'commentaire' }} sur
+            {{ pluralize('commentaire', post.comment.length, 's') }} sur
             {{ post.title }}
         </p>
         <div v-if="post.comment">
@@ -92,6 +91,7 @@ import AppTextarea from './AppTextarea.vue';
 import { mapGetters } from 'vuex';
 import { AuthGettersTypes } from '@/store/modules/auth/getters';
 import { RoutesName } from '@/router/types';
+import { pluralizeStr } from '@/utils/string';
 
 export default defineComponent({
     components: {
@@ -114,6 +114,9 @@ export default defineComponent({
             const d = DateTime.fromMillis(parseInt(date));
 
             return `Le ${d.setLocale('fr').toFormat('dd LLLL yyyy à HH:mm')}`;
+        },
+        pluralize(str: string, count: number) {
+            return pluralizeStr(str, count, 's');
         },
         handleSubmit() {
             if (!this.isAuthenticated) {

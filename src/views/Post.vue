@@ -6,11 +6,11 @@
         </h1>
         <div class="flex items-center justify-center space-x-6">
             <div class="flex items-center space-x-2">
-                <icon-user class="w-6 h-6 text-indigo-700" />
+                <icon-user class="w-4 text-gray-700 stroke-2" />
                 <p class="text-sm text-gray-700">{{ post.user.name }}</p>
             </div>
             <div class="flex items-center space-x-2">
-                <icon-clock class="w-6 h-6 text-indigo-700" />
+                <icon-clock class="w-4 text-gray-700 stroke-2" />
                 <p class="text-sm text-gray-700">
                     {{ formateDate(post.createdAt) }}
                 </p>
@@ -24,11 +24,10 @@
 </template>
 
 <script lang="ts">
-import { useMutation, useQuery, useResult } from '@vue/apollo-composable';
+import { useQuery, useResult } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
-import { DateTime } from 'luxon';
 import IconUser from '@/components/icons/IconUser.vue';
 import IconClock from '@/components/icons/IconClock.vue';
 import AppComment from '@/components/AppComment.vue';
@@ -89,7 +88,18 @@ export default defineComponent({
 
         const post = useResult(
             result,
-            { title: '', content: '' },
+            {
+                id: '',
+                title: '',
+                slug: '',
+                content: '',
+                published: false,
+                createdAt: '',
+                updatedAt: '',
+                publishedAt: '',
+                user: {},
+                comment: [],
+            },
             (data) => data.getPostById
         );
 
