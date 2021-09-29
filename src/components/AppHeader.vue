@@ -6,6 +6,9 @@
             </router-link>
         </div>
         <div class="flex items-center space-x-4" v-if="isAuthenticated">
+            <router-link :to="{ name: routesName.ADMIN_POSTS }">
+                Posts
+            </router-link>
             <app-dropdown :title="getUser.name">
                 <div class="p-1" role="none">
                     <router-link :to="{ name: routesName.ACCOUNT }">
@@ -41,16 +44,12 @@
             </app-dropdown>
         </div>
         <div v-else>
-            <app-button buttonType="link">
-                <router-link :to="{ name: routesName.SIGN_IN }"
-                    >Sign in</router-link
-                >
-            </app-button>
-            <app-button>
-                <router-link :to="{ name: routesName.SIGN_UP }"
-                    >Sign up</router-link
-                >
-            </app-button>
+            <router-link :to="{ name: routesName.SIGN_IN }">
+                <app-button buttonType="link">Sign in</app-button>
+            </router-link>
+            <router-link :to="{ name: routesName.SIGN_UP }">
+                <app-button>Sign up</app-button>
+            </router-link>
         </div>
     </div>
 </template>

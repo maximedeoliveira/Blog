@@ -12,14 +12,19 @@ export default defineComponent({
         buttonType: { type: String, required: false, default: 'primary' },
         type: { type: String, required: false, default: '' },
         class: { type: String, required: false, default: '' },
+        padding: { type: Boolean, required: false, default: true },
     },
     computed: {
         className: function () {
             if (this.buttonType === 'link') {
-                return `whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:text-indigo-700 ${this.class}`;
+                return `whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-md text-base font-medium text-indigo-600 hover:text-indigo-700 ${
+                    this.padding ? 'px-4 py-2' : ''
+                } ${this.class} `;
             }
 
-            return `whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 ${this.class}`;
+            return `whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 ${
+                this.class
+            } ${this.padding ? 'px-4 py-2' : ''}`;
         },
     },
 });

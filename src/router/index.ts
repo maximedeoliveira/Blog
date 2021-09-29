@@ -7,6 +7,8 @@ const routes = [
     Routes[RoutesName.ACCOUNT],
     Routes[RoutesName.SIGN_IN],
     Routes[RoutesName.SIGN_UP],
+    Routes[RoutesName.ADMIN_POSTS],
+    Routes[RoutesName.ADMIN_POST],
 ];
 
 const router = createRouter({

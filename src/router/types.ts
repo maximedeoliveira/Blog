@@ -7,6 +7,8 @@ export enum RoutesName {
     ACCOUNT = 'Account',
     SIGN_IN = 'SignIn',
     SIGN_UP = 'SignUp',
+    ADMIN_POSTS = 'AdminPosts',
+    ADMIN_POST = 'AdminPost',
 }
 
 export const Routes: Record<RoutesName, RouteRecordRaw> = {
@@ -43,5 +45,19 @@ export const Routes: Record<RoutesName, RouteRecordRaw> = {
         component: () =>
             import(/* webpackChunkName: "SignUp" */ '../views/SignUp.vue'),
         meta: { authenticated: false },
+    },
+    [RoutesName.ADMIN_POSTS]: {
+        name: RoutesName.ADMIN_POSTS,
+        path: '/admin/posts',
+        component: () =>
+            import(/* webpackChunkName: "SignUp" */ '../views/admin/Posts.vue'),
+        meta: { authenticated: true },
+    },
+    [RoutesName.ADMIN_POST]: {
+        name: RoutesName.ADMIN_POST,
+        path: '/admin/post/:id',
+        component: () =>
+            import(/* webpackChunkName: "SignUp" */ '../views/admin/Post.vue'),
+        meta: { authenticated: true },
     },
 };
