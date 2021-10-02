@@ -3,7 +3,22 @@
         <button
             @click.prevent="open()"
             type="button"
-            class="inline-flex items-center w-full px-4 py-2 font-medium text-gray-700 border-gray-300 rounded-md  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+            class="
+                inline-flex
+                items-center
+                w-full
+                px-4
+                py-2
+                font-medium
+                text-gray-700
+                border-gray-300
+                rounded-md
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-offset-gray-100
+                focus:ring-indigo-500
+            "
             id="menu-button"
             aria-expanded="true"
             aria-haspopup="true"
@@ -14,7 +29,18 @@
         </button>
         <div
             v-if="isOpen === true"
-            class="absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg  ring-1 ring-black ring-opacity-5 focus:outline-none"
+            class="
+                absolute
+                right-0
+                w-56
+                mt-2
+                origin-top-right
+                bg-white
+                rounded-md
+                shadow-lg
+                ring-1 ring-black ring-opacity-5
+                focus:outline-none
+            "
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"

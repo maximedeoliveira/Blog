@@ -24,11 +24,26 @@
                 </app-button>
             </div>
             <div
-                class="absolute top-0 w-full h-full bg-indigo-700 rounded  bg-opacity-80"
+                class="
+                    absolute
+                    top-0
+                    w-full
+                    h-full
+                    bg-indigo-700
+                    rounded
+                    bg-opacity-80
+                "
                 v-if="isAuthenticated === false"
             >
                 <div
-                    class="flex flex-col items-center justify-center w-full h-full space-y-2 "
+                    class="
+                        flex flex-col
+                        items-center
+                        justify-center
+                        w-full
+                        h-full
+                        space-y-2
+                    "
                 >
                     <p class="font-medium text-center text-white">
                         Vous devez être connecté pour ajouter un commentaire.

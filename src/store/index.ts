@@ -15,6 +15,6 @@ export const store = createStore({
     },
 });
 
-export function useStore() {
+export function useStore(): Store<RootState> {
     return baseUseStore(key);
 }

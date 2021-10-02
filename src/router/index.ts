@@ -8,7 +8,8 @@ const routes = [
     Routes[RoutesName.SIGN_IN],
     Routes[RoutesName.SIGN_UP],
     Routes[RoutesName.ADMIN_POSTS],
-    Routes[RoutesName.ADMIN_POST],
+    Routes[RoutesName.ADMIN_EDIT_POST],
+    Routes[RoutesName.ADMIN_ADD_POST],
 ];
 
 const router = createRouter({

@@ -83,7 +83,8 @@ export default defineComponent({
             `,
             {
                 id: postId,
-            }
+            },
+            { fetchPolicy: 'cache-and-network' }
         );
 
         const post = useResult(

@@ -8,7 +8,8 @@ export enum RoutesName {
     SIGN_IN = 'SignIn',
     SIGN_UP = 'SignUp',
     ADMIN_POSTS = 'AdminPosts',
-    ADMIN_POST = 'AdminPost',
+    ADMIN_EDIT_POST = 'AdminEditPost',
+    ADMIN_ADD_POST = 'AdminAddPost',
 }
 
 export const Routes: Record<RoutesName, RouteRecordRaw> = {
@@ -50,14 +51,23 @@ export const Routes: Record<RoutesName, RouteRecordRaw> = {
         name: RoutesName.ADMIN_POSTS,
         path: '/admin/posts',
         component: () =>
-            import(/* webpackChunkName: "SignUp" */ '../views/admin/Posts.vue'),
+            import(/* webpackChunkName: "Posts" */ '../views/admin/Posts.vue'),
         meta: { authenticated: true },
     },
-    [RoutesName.ADMIN_POST]: {
-        name: RoutesName.ADMIN_POST,
-        path: '/admin/post/:id',
+    [RoutesName.ADMIN_EDIT_POST]: {
+        name: RoutesName.ADMIN_EDIT_POST,
+        path: '/admin/post/edit/:id',
         component: () =>
-            import(/* webpackChunkName: "SignUp" */ '../views/admin/Post.vue'),
+            import(
+                /* webpackChunkName: "EditPost" */ '../views/admin/Edit.vue'
+            ),
+        meta: { authenticated: true },
+    },
+    [RoutesName.ADMIN_ADD_POST]: {
+        name: RoutesName.ADMIN_ADD_POST,
+        path: '/admin/post/add',
+        component: () =>
+            import(/* webpackChunkName: "AddPost" */ '../views/admin/Add.vue'),
         meta: { authenticated: true },
     },
 };

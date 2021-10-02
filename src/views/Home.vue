@@ -70,45 +70,32 @@ export default defineComponent({
         },
     },
     setup() {
-        const { result } = useQuery(gql`
-            query getAllPosts {
-                getAllPosts {
-                    id
-                    title
-                    slug
-                    content
-                    published
-                    createdAt
-                    user {
+        const { result } = useQuery(
+            gql`
+                query getAllPosts($published: Boolean) {
+                    getAllPosts(published: $published) {
                         id
-                        name
-                        email
-                    }
-                    comment {
-                        id
+                        title
+                        slug
+                        content
+                        published
+                        createdAt
+                        user {
+                            id
+                            name
+                            email
+                        }
+                        comment {
+                            id
+                        }
                     }
                 }
-            }
-        `);
-
-        const posts = useResult(
-            result,
-            {
-                id: '',
-                title: '',
-                slug: '',
-                content: '',
-                published: false,
-                createdAt: '',
-                user: {
-                    id: '',
-                    name: '',
-                    email: '',
-                },
-                comment: [],
-            },
-            (data) => data.getAllPosts
+            `,
+            { published: true },
+            { fetchPolicy: 'cache-and-network' }
         );
+
+        const posts = useResult(result, {}, (data) => data.getAllPosts);
 
         return { posts };
     },

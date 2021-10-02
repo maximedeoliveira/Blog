@@ -5,10 +5,7 @@
                 :to="{ name: routesName.HOME }"
                 class="flex items-center justify-center space-x-3"
             >
-                <img src="../assets/logo.png" class="w-12" />
-                <h1 class="text-3xl font-semibold text-gray-800">
-                    Mon super blog
-                </h1>
+                <h1 class="text-4xl font-bold text-gray-700">Mon Super blog</h1>
             </router-link>
             <form
                 class="mt-8 space-y-6"
@@ -51,7 +48,16 @@
                 </app-button>
             </form>
             <div
-                class="flex items-center justify-center mt-2 space-x-2 text-sm font-semibold text-gray-700 "
+                class="
+                    flex
+                    items-center
+                    justify-center
+                    mt-2
+                    space-x-2
+                    text-sm
+                    font-semibold
+                    text-gray-700
+                "
             >
                 <span>Vous n'avez pas de compte ?</span>
                 <router-link
@@ -70,7 +76,7 @@ import { defineComponent } from 'vue';
 import AppButton from '@/components/AppButton.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppLabel from '@/components/AppLabel.vue';
-import { useMutation, useQuery } from '@vue/apollo-composable';
+import { useMutation } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
 import { useStore } from '@/store';
 import { AuthActionsType } from '@/store/modules/auth/actions';
